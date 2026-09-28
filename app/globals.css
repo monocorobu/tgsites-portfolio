@@ -1,0 +1,344 @@
+/* ===================================
+   TGSITES - Design System Brutalista
+   Preto / Branco / Dourado
+   =================================== */
+
+/* === FONTS: carregadas via next/font/google (auto-hospedadas, sem bloqueio) ===
+   A variável --font-roboto é injetada pelo layout.tsx via className={roboto.variable}
+   =================================== */
+
+@import "tailwindcss";
+
+/* === THEME CONFIGURATION (Tailwind v4) === */
+@theme {
+  /* === BREAKPOINTS (Notebook threshold > 1300px) === */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1310px;
+  --breakpoint-2xl: 1536px;
+
+  /* === CORES === */
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F4E5B8;
+  --color-gold-dark: #B8941F;
+
+  --color-gray-900: #0A0A0A;
+  --color-gray-800: #1A1A1A;
+  --color-gray-700: #2A2A2A;
+  --color-gray-300: #D1D1D1;
+  --color-gray-100: #F5F5F5;
+
+  /* === FONTS (via next/font CSS variable) === */
+  --font-display: var(--font-roboto, 'Roboto', sans-serif);
+  --font-body: var(--font-roboto, 'Roboto', sans-serif);
+  --font-highlight: var(--font-roboto, 'Roboto', sans-serif);
+
+  /* === TEXT SIZES (Scale 1.2 - Perfect Fourth) === */
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.25rem;
+  /* 36px */
+  --text-5xl: 3rem;
+  /* 48px */
+  --text-6xl: 3.75rem;
+  /* 60px */
+  --text-7xl: 4.5rem;
+  /* 72px */
+  --text-8xl: 6rem;
+  /* 96px */
+  --text-9xl: 8rem;
+  /* 128px */
+
+  /* === SPACING (Custom Scale) === */
+  /* Sobrescrevendo/Estendendo a escala padrão */
+  --spacing-1: 0.25rem;
+  /* 4px */
+  --spacing-2: 0.5rem;
+  /* 8px */
+  --spacing-3: 0.75rem;
+  /* 12px */
+  --spacing-4: 1rem;
+  /* 16px */
+  --spacing-6: 1.5rem;
+  /* 24px */
+  --spacing-8: 2rem;
+  /* 32px */
+  --spacing-10: 2.5rem;
+  /* 40px */
+  --spacing-12: 3rem;
+  /* 48px */
+  --spacing-16: 4rem;
+  /* 64px */
+  --spacing-20: 5rem;
+  /* 80px */
+  --spacing-24: 6rem;
+  /* 96px */
+  --spacing-32: 8rem;
+  /* 128px */
+  --spacing-40: 10rem;
+  /* 160px */
+  --spacing-48: 12rem;
+  /* 192px */
+  --spacing-64: 16rem;
+  /* 256px */
+
+  /* === SHADOWS === */
+  --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.4);
+  --shadow-gold-strong: 0 0 40px rgba(212, 175, 55, 0.6);
+}
+
+/* === BASE STYLES === */
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  main {
+    @apply overflow-x-clip;
+  }
+
+  body {
+    @apply bg-black text-white font-body text-base leading-relaxed;
+  }
+
+  /* Headings Typography */
+  h1,
+  .heading-1 {
+    @apply font-display font-black text-white uppercase tracking-tight;
+    font-size: clamp(3rem, 10vw, var(--text-8xl));
+    line-height: 0.9;
+  }
+
+  h2,
+  .heading-2 {
+    @apply font-display font-black text-white uppercase;
+    font-size: clamp(2rem, 6vw, var(--text-6xl));
+    line-height: 1;
+  }
+
+  h3,
+  .heading-3 {
+    @apply font-body font-bold text-white;
+    font-size: clamp(1.5rem, 4vw, var(--text-4xl));
+    line-height: 1.2;
+  }
+
+  .label {
+    @apply font-body font-semibold text-gold uppercase tracking-widest text-sm;
+  }
+}
+
+/* === COMPONENTS === */
+@layer components {
+
+  /* Container Responsivo */
+  .container {
+    @apply mx-auto px-8 max-w-[1440px];
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      @apply px-16;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      @apply px-24;
+    }
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center font-body font-bold text-lg uppercase tracking-wide px-8 py-4 border-2 transition-all duration-300 cursor-pointer;
+  }
+
+  .btn:hover {
+    @apply -translate-y-1;
+  }
+
+  .btn-primary {
+    @apply bg-gold border-gold text-black shadow-gold;
+  }
+
+  .btn-primary:hover {
+    @apply bg-gold-light border-gold-light shadow-gold-strong;
+  }
+
+  .btn-secondary {
+    @apply border-white text-white hover:bg-white hover:text-black;
+  }
+
+  /* Section Marker */
+  .section-marker::before {
+    content: "//";
+    @apply font-display text-4xl text-gold mr-4;
+  }
+}
+
+/* === UTILITIES & ANIMATIONS === */
+
+/* Marquee Animation */
+.marquee {
+  @apply overflow-hidden whitespace-nowrap bg-black border-y border-gray-700 py-8;
+}
+
+.marquee-content {
+  @apply inline-block pl-[100%];
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-text {
+  @apply font-display font-black text-white uppercase inline-block px-4;
+  font-size: clamp(3rem, 8vw, var(--text-8xl));
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* Animation Utilities */
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Scroll Animations */
+[data-animate] {
+  @apply opacity-0 translate-y-10 transition-all duration-700 ease-out;
+}
+
+[data-animate].is-visible {
+  @apply opacity-100 translate-y-0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-content {
+    animation: none;
+    padding-left: 0;
+  }
+}
+
+/* Custom Utilities */
+.group:hover .hover-rotate-360 {
+  transform: rotate(360deg);
+}
+
+/* ── Hero CSS Animations (substituem Framer Motion no critical path) ── */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-up {
+  animation: fadeInUp 0.5s ease-out both;
+  animation-delay: 0.3s;
+}
+
+/* === CSS DEBUG TEST === */
+.debug-native-xl {
+  background-color: #ef4444;
+  /* Red (Initial) */
+}
+
+@media (min-width: 768px) {
+  .debug-native-xl {
+    background-color: #f97316;
+  }
+
+  /* Orange */
+}
+
+@media (min-width: 1024px) {
+  .debug-native-xl {
+    background-color: #3b82f6;
+  }
+
+  /* Blue */
+}
+
+@media (min-width: 1310px) {
+  .debug-native-xl {
+    background-color: #16a34a;
+  }
+
+  /* Green */
+}
